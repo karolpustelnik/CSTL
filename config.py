@@ -1,8 +1,8 @@
 conf = {
-    "WORK_PATH": "/Users/karol/Desktop/nss/CSTL/work",
+    "WORK_PATH": "/.work",
     "CUDA_VISIBLE_DEVICES": "1, 0",
     "data": {
-        'dataset_path': "/Users/karol/Desktop/nss/sil2", #your_dataset_path
+        'dataset_path': "/home/biox/Desktop/biox/gait_models/datasets/CASIA-Biox/sil2", #your_dataset_path
         'resolution': '64',
         'dataset': 'CASIA-B',
         # In CASIA-B, data of subject #5 is incomplete.
