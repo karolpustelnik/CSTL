@@ -61,9 +61,9 @@ class Model:
         self.triplet_loss = nn.DataParallel(self.triplet_loss)
         self.id_loss = nn.CrossEntropyLoss()
         self.id_loss = nn.DataParallel(self.id_loss)
-        self.id_loss.cuda()
-        self.encoder.cuda()
-        self.triplet_loss.cuda()
+        self.id_loss.cuda() if torch.cuda.is_available() else None
+        self.encoder.cuda() if torch.cuda.is_available() else None
+        self.triplet_loss.cuda() if torch.cuda.is_available() else None
 
         self.optimizer = optim.Adam([
             {'params': self.encoder.parameters()},
@@ -117,7 +117,7 @@ class Model:
         if self.sample_type == 'random':
             seqs = [np.asarray([seqs[i][j] for i in range(batch_size)]) for j in range(feature_num)]
         else:
-            gpu_num = min(torch.cuda.device_count(), batch_size)
+            gpu_num = min(torch.cuda.device_count(), batch_size) if torch.cuda.is_available() else 1
             batch_per_gpu = math.ceil(batch_size / gpu_num)
             batch_frames = [[
                                 len(frame_sets[i])
@@ -237,7 +237,7 @@ class Model:
                 break
 
     def ts2var(self, x):
-        return autograd.Variable(x).cuda()
+        return autograd.Variable(x).cuda() if torch.cuda.is_available() else autograd.Variable(x)
 
     def np2var(self, x):
         return self.ts2var(torch.from_numpy(x))

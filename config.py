@@ -1,9 +1,9 @@
 conf = {
-    "WORK_PATH": "./work",
+    "WORK_PATH": "/Users/karol/Desktop/nss/CSTL/work",
     "CUDA_VISIBLE_DEVICES": "1, 0",
     "data": {
-        'dataset_path': "/data/datasets/sil_128x88/", #your_dataset_path
-        'resolution': '128',
+        'dataset_path': "/Users/karol/Desktop/nss/sil2", #your_dataset_path
+        'resolution': '64',
         'dataset': 'CASIA-B',
         # In CASIA-B, data of subject #5 is incomplete.
         # Thus, we ignore it in training.
@@ -16,9 +16,9 @@ conf = {
         'hard_or_full_trip': 'full',
         'batch_size': (8, 8),
         'restore_iter': 0,
-        'total_iter': 150000,
+        'total_iter': 100_000,
         'margin': 0.2,
-        'num_workers': 4,
+        'num_workers': 1,
         'frame_num': 30,
         'model_name': 'CSTL',
     },

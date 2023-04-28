@@ -6,6 +6,7 @@ import pickle
 import cv2
 import xarray as xr
 import random
+import pickle
 
 
 class DataSet(tordata.Dataset):
@@ -49,7 +50,8 @@ class DataSet(tordata.Dataset):
         return self.__getitem__(index)
 
     def __loader__(self, path):
-        return self.img2xarray(path).astype('float32') / 255.0
+        return self.pickle2xarray(path).astype('float32') / 255.0
+        #return self.img2xarray(path).astype('float32') / 255.0
 
     def __getitem__(self, index):
         # pose sequence sampling
@@ -72,6 +74,7 @@ class DataSet(tordata.Dataset):
 
     def img2xarray(self, file_path):
         imgs = sorted(list(os.listdir(file_path)))
+        #print(cv2.imread(osp.join(file_path, imgs[0])).shape)
         frame_list = [np.reshape(
             cv2.imread(osp.join(file_path, _img_path)),
             [self.resolution, self.resolution-2*self.cut_padding, -1])[:, :, 0]
@@ -84,6 +87,25 @@ class DataSet(tordata.Dataset):
             dims=['frame', 'img_y', 'img_x'],
         )
         return data_dict
+
+    def pickle2xarray(self, file_path):
+        pickles = sorted(list(os.listdir(file_path)))
+        frame_list = []
+        for _pickle_path in pickles:
+            if osp.isfile(osp.join(file_path, _pickle_path)):
+                with open(osp.join(file_path, _pickle_path), 'rb') as f:
+                    data = pickle.load(f)
+                # reshape data if necessary
+                frame_list.append(data)
+        frame_list = frame_list[0]
+        num_list = list(range(len(frame_list)))
+        data_dict = xr.DataArray(
+            frame_list,
+            coords={'frame': num_list},
+            dims=['frame', 'pickle_y', 'pickle_x'],
+    )
+        return data_dict
+
 
     def __len__(self):
         return len(self.label)

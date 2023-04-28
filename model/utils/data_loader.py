@@ -22,13 +22,14 @@ def load_data(dataset_path, resolution, dataset, pid_num, pid_shuffle, cache=Tru
             seq_type_path = osp.join(label_path, _seq_type)
             for _view in sorted(list(os.listdir(seq_type_path))):
                 _seq_dir = osp.join(seq_type_path, _view)
+                if not osp.isdir(_seq_dir):
+                    continue
                 seqs = os.listdir(_seq_dir)
-                if len(seqs) > 2:
+                if len(seqs) == 1:
                     seq_dir.append([_seq_dir])
                     label.append(_label)
                     seq_type.append(_seq_type)
                     view.append(_view)
-
     pid_fname = osp.join('partition', '{}_{}_{}.npy'.format(
         dataset, pid_num, pid_shuffle))
     if not osp.exists(pid_fname):
@@ -56,5 +57,4 @@ def load_data(dataset_path, resolution, dataset, pid_num, pid_shuffle, cache=Tru
         [view[i] for i, l in enumerate(label)
          if l in test_list],
         cache, resolution)
-
     return train_source, test_source
