@@ -1,5 +1,5 @@
 conf = {
-    "WORK_PATH": "/.work",
+    "WORK_PATH": "/home/biox/Desktop/biox/CSTL/work",
     "CUDA_VISIBLE_DEVICES": "1, 0",
     "data": {
         'dataset_path': "/home/biox/Desktop/biox/gait_models/datasets/CASIA-Biox/sil2", #your_dataset_path
