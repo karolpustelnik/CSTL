@@ -11,7 +11,7 @@ conf = {
         'pid_shuffle': False,
     },
     "model": {
-        'hidden_dim': 256,
+        'hidden_dim': 128,
         'lr': 1e-4,
         'hard_or_full_trip': 'full',
         'batch_size': (8, 8),
