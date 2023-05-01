@@ -22,4 +22,13 @@ conf = {
         'frame_num': 30,
         'model_name': 'CSTL',
     },
+    "wandb": {
+        'project': 'bioX',
+        'entity': 'team-biox',
+        'mode': 'online',
+        'name': 'CSTL',
+        'tags': null,
+        'group': null,
+        'notes': null,
+    }
 }

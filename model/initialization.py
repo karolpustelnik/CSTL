@@ -45,12 +45,12 @@ def initialize_model(config, train_source, test_source):
 
 def initialization(config, train=False, test=False):
     wandb.init(
-    project=cfgs['wandb']['project'],
-    entity=cfgs['wandb']['entity'],
-    mode=cfgs['wandb']['mode'],
-    name=cfgs['wandb']['name'],
-    tags=cfgs['wandb']['tags'],
-    config=cfgs
+    project=config['wandb']['project'],
+    entity=config['wandb']['entity'],
+    mode=config['wandb']['mode'],
+    name=config['wandb']['name'],
+    tags=config['wandb']['tags'],
+    config=config
     )
     print("Initializing...")
     WORK_PATH = config['WORK_PATH']
