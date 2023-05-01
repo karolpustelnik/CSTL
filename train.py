@@ -1,7 +1,7 @@
 from model.initialization import initialization
 from config import conf
 import argparse
-
+import torch
 
 def boolean_string(s):
     if s.upper() not in {'FALSE', 'TRUE'}:
@@ -18,4 +18,6 @@ opt = parser.parse_args()
 
 m = initialization(conf, train=opt.cache)[0]
 print(conf)
+#move to cuda
+m.cuda() if torch.cuda.is_available() else m
 m.fit()
