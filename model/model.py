@@ -53,7 +53,7 @@ class Model:
         self.total_iter = total_iter
 
         self.img_size = img_size
-
+        print('img_size: ', img_size)
         self.encoder = GaitNet(self.hidden_dim, self.train_pid_num, img_size // 2).float()
 
         self.encoder = nn.DataParallel(self.encoder)
