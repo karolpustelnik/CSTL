@@ -13,7 +13,7 @@ class GaitNet(nn.Module):
     def __init__(self, hidden_dim, class_num, part_num=64, div=16):
         super(GaitNet, self).__init__()
         self.hidden_dim = hidden_dim
-
+        print('part num: ', part_num)
         _in_channels = 1
         _channels = [32, 64, 128]
 
