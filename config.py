@@ -26,7 +26,7 @@ conf = {
         'project': 'bioX',
         'entity': 'team-biox',
         'mode': 'online',
-        'name': 'CSTL',
+        'name': 'CSTL_org_repo',
         
     }
 }
