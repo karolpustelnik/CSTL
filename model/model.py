@@ -32,7 +32,7 @@ class Model:
                  model_name,
                  train_source,
                  test_source,
-                 img_size=128):
+                 img_size=64):
 
         self.save_name = save_name
         self.train_pid_num = train_pid_num
