@@ -27,8 +27,5 @@ conf = {
         'entity': 'team-biox',
         'mode': 'online',
         'name': 'CSTL',
-        'tags': null,
-        'group': null,
-        'notes': null,
     }
 }
