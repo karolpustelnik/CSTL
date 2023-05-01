@@ -170,6 +170,7 @@ class Model:
 
         for seq, view, seq_type, label, batch_frame in train_loader:
             self.restore_iter += 1
+            print('iter: %d' % self.restore_iter)
             self.optimizer.zero_grad()
 
             for i in range(len(seq)):
