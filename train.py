@@ -20,5 +20,4 @@ m = initialization(conf, train=opt.cache)[0]
 print(conf)
 #move to cuda
 print("cuda is available:",torch.cuda.is_available())
-m.cuda() if torch.cuda.is_available() else m
 m.fit()
