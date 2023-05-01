@@ -1,3 +1,4 @@
+import wandb
 import math
 import os
 import os.path as osp
@@ -205,7 +206,12 @@ class Model:
             self.full_loss_num.append(full_loss_num.mean().data.cpu().numpy())
             self.dist_list.append(mean_dist.mean().data.cpu().numpy())
             self.id_loss_metric.append(id_loss.mean().data.cpu().numpy())
-
+            wandb.log({'hard_loss_metric': hard_loss_metric.mean().data.cpu().numpy(),
+                       'full_loss_metric': full_loss_metric.mean().data.cpu().numpy(),
+                       'full_loss_num': full_loss_num.mean().data.cpu().numpy(),
+                       'id_loss_metric': id_loss.mean().data.cpu().numpy(),
+                       'mean_dist': mean_dist.mean().data.cpu().numpy()}, step=self.restore_iter)
+            
             if loss > 1e-9:
                 loss.backward()
                 self.optimizer.step()
@@ -217,7 +223,7 @@ class Model:
             if self.restore_iter % 1000 == 0:
                 self.save()
 
-            if self.restore_iter % 1000 == 0:
+            if self.restore_iter % 100 == 0:
                 print('iter {}:'.format(self.restore_iter), end='')
                 print(', hard_loss_metric={0:.8f}'.format(np.mean(self.hard_loss_metric)), end='')
                 print(', full_loss_metric={0:.8f}'.format(np.mean(self.full_loss_metric)), end='')

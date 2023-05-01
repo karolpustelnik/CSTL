@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author  : admin
 # @Time    : 2018/11/15
+import wandb
 import os
 from copy import deepcopy
 
@@ -43,6 +44,14 @@ def initialize_model(config, train_source, test_source):
 
 
 def initialization(config, train=False, test=False):
+    wandb.init(
+    project=cfgs['wandb']['project'],
+    entity=cfgs['wandb']['entity'],
+    mode=cfgs['wandb']['mode'],
+    name=cfgs['wandb']['name'],
+    tags=cfgs['wandb']['tags'],
+    config=cfgs
+    )
     print("Initializing...")
     WORK_PATH = config['WORK_PATH']
     os.chdir(WORK_PATH)
