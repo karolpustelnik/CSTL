@@ -26,7 +26,7 @@ class MSTE(nn.Module):
         self.in_planes = in_planes
         self.out_planes = out_planes
         self.part_num = part_num
-
+        print()
         self.score = mlp_sigmoid(in_planes*part_num, in_planes*part_num, 1, groups=part_num)
 
         self.short_term = nn.ModuleList([conv_bn(in_planes*part_num, out_planes*part_num, 3, padding=1, groups=part_num), 

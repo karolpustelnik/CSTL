@@ -10,7 +10,7 @@ from .basic_blocks import BasicConv2d, SetBlock
 from .cstl import MSTE, ATA, SSFL 
 
 class GaitNet(nn.Module):
-    def __init__(self, hidden_dim, class_num, part_num=32, div=16):
+    def __init__(self, hidden_dim, class_num, part_num=64, div=16):
         super(GaitNet, self).__init__()
         self.hidden_dim = hidden_dim
 
