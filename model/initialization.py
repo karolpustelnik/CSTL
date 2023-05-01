@@ -49,7 +49,6 @@ def initialization(config, train=False, test=False):
     entity=config['wandb']['entity'],
     mode=config['wandb']['mode'],
     name=config['wandb']['name'],
-    tags=config['wandb']['tags'],
     config=config
     )
     print("Initializing...")
